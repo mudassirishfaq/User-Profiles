@@ -56,3 +56,27 @@ userArray.splice(id,1);
 saveInfo(userArray);
 displayinfo(userArray);
 }
+
+
+// Dynamic Search Filter
+
+const AllTableRows = document.querySelectorAll('#records tr');
+const DynamicSearchInput = document.getElementById("DynamicSearch");
+
+DynamicSearchInput.addEventListener("input" , (e)=>{
+   records.innerHTML = ""
+   // console.log(e.target.value);
+   const searchStr = e.target.value.toLowerCase()
+  AllTableRows.forEach(tr => {
+   let DataInRows = tr.querySelectorAll("td");
+   console.log(DataInRows[0].innerText);
+   if(DataInRows[0].innerText.toLowerCase().indexOf(searchStr) > -1){
+      records.appendChild(tr);
+   }
+  })
+  if(records.innerHTML == ""){
+   records.innerHTML = " No records Found "
+  }
+})
+
+
